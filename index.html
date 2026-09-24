@@ -1,0 +1,354 @@
+<style>
+/* =========================================
+   HOSTLET PROMPT - ORIGINAL BG COLOR + CLEAN DOTS DESIGN
+========================================= */
+
+.hostlet-unified-page {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 30px 20px 40px 20px;
+    
+    /* Original Background Color & Gradient Restored + Clean Tech Dots & Lines */
+    background-color: #000000;
+    background-image: 
+        /* Clean Cyber Dots */
+        radial-gradient(rgba(56, 189, 248, 0.25) 1.5px, transparent 1.5px),
+        /* Subtle Tech Lines */
+        linear-gradient(45deg, rgba(56, 189, 248, 0.03) 25%, transparent 25%), 
+        linear-gradient(-45deg, rgba(56, 189, 248, 0.03) 25%, transparent 25%),
+        /* Original Top Glow & Original Dark Blue Gradient */
+        radial-gradient(circle at 50% 10%, rgba(56, 189, 248, 0.15) 0%, transparent 60%),
+        linear-gradient(to bottom, #100950, #04125D, #030725, #000000);
+        
+    background-size: 32px 32px, 64px 64px, 64px 64px, cover, cover;
+    background-position: 0 0, 0 0, 0 0, center top, center top;
+    background-repeat: repeat, repeat, repeat, no-repeat, no-repeat;
+    
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.hostlet-unified-page * {
+    box-sizing: border-box;
+}
+
+/* TOP HERO GRID (LOGO, HEADINGS & PORTALS SIDE BY SIDE) */
+.hu-hero-grid-top {
+    position: relative;
+    z-index: 2;
+    max-width: 1250px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 30px;
+    align-items: center;
+}
+
+/* LEFT HERO CONTENT */
+.hu-hero-left {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* HP LOGO - INCREASED SIZE */
+.hu-badge-box {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #04125D, #000000);
+    border: 2.5px solid #38bdf8;
+    box-shadow: 
+        0 0 35px rgba(0, 0, 0, 0.95),
+        0 0 55px rgba(56, 189, 248, 0.7),
+        inset 0 0 16px rgba(56, 189, 248, 0.5);
+}
+
+.hu-badge-text {
+    font-size: 48px;
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: 2px;
+    font-style: italic;
+    text-shadow: 0 0 25px rgba(56, 189, 248, 0.95);
+}
+
+.hu-main-title {
+    margin: 0 0 12px 0;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #ffffff;
+    text-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+    line-height: 1.2;
+}
+
+.hu-sub-title {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.hu-description-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin: 0;
+}
+
+/* RIGHT SIDE: PORTALS SIDEBAR WITH DESIGN BORDER */
+.hu-right-sidebar {
+    background: rgba(4, 18, 93, 0.35);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(56, 189, 248, 0.15);
+}
+
+.hu-grid-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-align: center;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    padding-bottom: 8px;
+}
+
+.hu-nav-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hu-nav-card {
+    position: relative;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(56, 189, 248, 0.3);
+    background: linear-gradient(135deg, rgba(4, 18, 93, 0.6), rgba(0, 0, 0, 0.7));
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hu-nav-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+}
+
+.hu-nav-card span {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.hu-nav-card:hover {
+    border-color: #38bdf8;
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(16, 9, 80, 0.9), rgba(4, 18, 93, 0.9));
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+}
+
+/* LOWER CONTENT SECTION */
+.hu-lower-container {
+    max-width: 1250px;
+    width: 100%;
+    margin: 25px auto 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.hu-section-block {
+    background: rgba(4, 18, 93, 0.25);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 20px;
+    padding: 22px 25px;
+    backdrop-filter: blur(10px);
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.hu-section-block::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #38bdf8, transparent);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.hu-section-block h2 {
+    font-size: 21px;
+    font-weight: 700;
+    color: #38bdf8;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.hu-section-block p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #e2e8f0;
+    margin: 0;
+}
+
+/* CREATION FEATURES PILLS */
+.hu-features-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.hu-feature-pill {
+    padding: 7px 14px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 18px;
+    font-size: 11.5px;
+    color: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.hu-feature-pill:hover {
+    border-color: #38bdf8;
+    background: rgba(4, 18, 93, 0.6);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 950px) {
+    .hu-hero-grid-top,
+    .hu-lower-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+</style>
+
+<div class="hostlet-unified-page">
+
+    <!-- TOP HERO GRID: LOGO, HEADINGS & PORTALS SIDE-BY-SIDE -->
+    <div class="hu-hero-grid-top">
+        
+        <!-- LEFT HERO INFO -->
+        <div class="hu-hero-left">
+            <div class="hu-badge-box">
+                <span class="hu-badge-text">HP</span>
+            </div>
+
+            <h1 class="hu-main-title">
+                Best AI Prompt Generator - Free AI Prompts for Every Need
+            </h1>
+
+            <h2 class="hu-sub-title">Your Ultimate Destination for AI Prompts</h2>
+
+            <p class="hu-description-text">
+                Hostlet Prompt is your free AI generator for high-quality AI prompts. Whether you need ChatGPT prompts, GPT prompts for any model, or prompts for Gemini and Claude, our AI prompt generator makes it simple.
+                Unlike other best AI tools, we focus on prompts that actually work — giving you clearer, more accurate, and more useful results on every search.
+            </p>
+        </div>
+
+        <!-- RIGHT SIDE: EXPLORE HOSTLET PORTALS -->
+        <div class="hu-right-sidebar">
+            <div class="hu-grid-title">Explore Hostlet Portals</div>
+            <div class="hu-nav-grid">
+                <a href="https://hostletprompt.online/free-prompt-generator/" class="hu-nav-card">
+                    Free Prompt Generator
+                    <span>Get high-quality prompts instantly</span>
+                </a>
+                <a href="https://hostletprompt.online/best-prompts-for-cloudai/" class="hu-nav-card">
+                    Best Prompts for Cloud AI
+                    <span>Cloud model optimizations</span>
+                </a>
+                <a href="https://hostletprompt.online/best-prompts-for-chatgpt/" class="hu-nav-card">
+                    Best Prompts for ChatGPT
+                    <span>Ready-to-use ChatGPT lists</span>
+                </a>
+                <a href="https://hostletprompt.online/best-prompts-for-gemini/" class="hu-nav-card">
+                    Best Prompts for Gemini
+                    <span>Google Gemini specialized prompts</span>
+                </a>
+                <a href="https://hostletprompt.online/best-prompts-for-webdevelpment" class="hu-nav-card">
+                    Best Prompts for Web Development
+                    <span>Coding & web dev solutions</span>
+                </a>
+                <a href="https://hostletprompt.online/about-us/" class="hu-nav-card">
+                    About Us
+                    <span>Learn more about our platform</span>
+                </a>
+                <a href="https://hostletprompt.online/write-for-us/" class="hu-nav-card">
+                    Write for Us
+                    <span>Join our contributor network</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- LOWER CONTENT SECTION: WHY CHOOSE & WHAT CAN YOU CREATE -->
+    <div class="hu-lower-container">
+        
+        <!-- WHY CHOOSE US -->
+        <div class="hu-section-block">
+            <h2>Why Choose Our Prompt Generator?</h2>
+            <p>
+                Our free prompt generator is built for everyone — beginners, writers, marketers, and developers. No login, no cost, no limits. Just type your idea and get a professional prompt in seconds.
+                <br><br>
+                We also offer a large, growing ChatGPT prompts list and collections for Gemini, Cloud AI, and web development — all ready to copy and use.
+            </p>
+        </div>
+
+        <!-- WHAT CAN YOU CREATE -->
+        <div class="hu-section-block">
+            <h2>What Can You Create With Our AI Prompts?</h2>
+            <p style="margin-bottom: 8px; color: #94a3b8;">Unlock maximum performance across all your tasks:</p>
+            
+            <div class="hu-features-flex">
+                <div class="hu-feature-pill">Professional emails & business communication</div>
+                <div class="hu-feature-pill">SEO-optimized blog posts & marketing copy</div>
+                <div class="hu-feature-pill">Social media content & product descriptions</div>
+                <div class="hu-feature-pill">Coding, data analysis & YouTube scripts</div>
+                <div class="hu-feature-pill">And much more</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
