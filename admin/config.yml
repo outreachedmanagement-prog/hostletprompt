@@ -2,7 +2,7 @@ backend:
   name: github
   repo: outreachedmanagement-prog/hostletprompt
   branch: main
-
+  site_domain: polite-mooncake-b5886f.netlify.app
 media_folder: "images"
 public_folder: "/images"
 
