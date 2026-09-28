@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best GEMINI Prompts Collection | Hostlet Prompt</title>
+    <style>
+        /* =========================================
+            UNIFIED BACKGROUND & GLOBAL STYLING
+        ========================================= */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            background-image: linear-gradient(to bottom, #100950, #04125D, #030725, #000000), url('https://hostletprompt.online/wp-content/uploads/2026/09/ChatGPT-Image-Sep-4-2026-06_38_32-PM.png');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+        }
+
+        /* =========================================
+            SHARED BACKGROUND STYLE FOR ALL BOXES
+        ========================================= */
+        .shared-bg {
+            background-color: #04125D;
+            background-image: linear-gradient(to bottom, #100950, #04125D, #030725, #000000), url('https://hostletprompt.online/wp-content/uploads/2026/09/ChatGPT-Image-Sep-4-2026-06_38_32-PM.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        /* =========================================
+            NAVIGATION BAR STYLING
+        ========================================= */
+        .hostlet-nav-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0 !important;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hp-about-header {
+            width: 100%;
+            max-width: 1300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hp-logo-title-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .hp-small-badge {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #04125D, #000000);
+            border: 1.5px solid #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+
+        .hp-small-badge-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: #38bdf8;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+        }
+
+        .hp-header-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+        }
+
+        .hp-header-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .hp-top-nav-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1.5px solid #38bdf8;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 10px rgba(16, 9, 80, 0.4);
+        }
+
+        .hp-top-nav-btn:hover {
+            border-color: #38bdf8;
+            background: rgba(16, 9, 80, 0.9);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+        }
+
+        .hp-top-nav-btn.active-page {
+            border-color: #38bdf8;
+            background: rgba(16, 9, 80, 0.8);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+        }
+
+        /* =========================================
+            MAIN CONTENT CONTAINER & LIGHTING HEADING
+        ========================================= */
+        .content-container {
+            max-width: 1000px;
+            margin: 20px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .lighting-heading-box {
+            text-align: center;
+            padding: 40px 20px;
+            border: 2px solid #38bdf8;
+            border-radius: 20px;
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.4), inset 0 0 20px rgba(56, 189, 248, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .lighting-heading-box h1 {
+            font-size: 38px;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+            line-height: 1.4;
+        }
+
+        .lighting-heading-box h1 span {
+            color: #38bdf8;
+            text-shadow: 0 0 25px rgba(56, 189, 248, 1);
+        }
+
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #d1d5db;
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* =========================================
+            PROMPTS CARDS & SCROLLABLE BOX STYLING
+        ========================================= */
+        .prompt-card {
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .prompt-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+        }
+
+        .prompt-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .prompt-card h3 {
+            color: #38bdf8;
+            font-size: 20px;
+            margin: 0;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #04125D, #38bdf8);
+            color: #ffffff;
+            border: 1px solid #38bdf8;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+        }
+
+        .copy-btn:hover {
+            background: #38bdf8;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+        }
+
+        .prompt-box {
+            background: rgba(0, 0, 0, 0.85);
+            border-left: 4px solid #38bdf8;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #e5e7eb;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        /* Custom Scrollbar */
+        .prompt-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .prompt-box::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+        .prompt-box::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .hp-about-header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .lighting-heading-box h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <div class="hostlet-nav-wrapper shared-bg">
+        <div class="hp-about-header">
+            <a href="https://hostletprompt.online/" class="hp-logo-title-area">
+                <div class="hp-small-badge">
+                    <span class="hp-small-badge-text">HP</span>
+                </div>
+                <h2 class="hp-header-title">Hostlet Prompt <span style="color: #38bdf8; text-shadow: 0 0 12px rgba(56, 189, 248, 0.8);">.online</span></h2>
+            </a>
+            <div class="hp-header-nav">
+                <a href="https://hostletprompt.online/free-prompt-generator/" class="hp-top-nav-btn">Prompt Generator</a>
+                <a href="https://hostletprompt.online/best-prompts-for-cloudai/" class="hp-top-nav-btn"> Prompts For CloudAi</a>
+                <a href="https://hostletprompt.online/best-prompts-for-chatgpt/" class="hp-top-nav-btn"> Prompts For ChatGPT</a>
+                <a href="https://hostletprompt.online/best-prompts-for-gemini/" class="hp-top-nav-btn active-page" style="border-color: #38bdf8; background: rgba(16, 9, 80, 0.9); box-shadow: 0 0 20px rgba(56, 189, 248, 0.8);"> Prompts for Gemini</a>
+                <a href="https://hostletprompt.online/best-prompts-for-webdevelpment/" class="hp-top-nav-btn">Prompts For Web Development</a>
+                <a href="https://hostletprompt.online/about-us/" class="hp-top-nav-btn">About Us</a>
+                <a href="https://hostletprompt.online/write-for-us/" class="hp-top-nav-btn">Write for Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="content-container">
+        
+        <!-- LIGHTING HEADING BOX -->
+        <div class="lighting-heading-box shared-bg">
+            <h1>Best <br><span> Gemini </span><br>Prompts For Research & Content Creation</h1>
+        </div>
+
+        <!-- SEO CONTENT INTRODUCTION -->
+        <div class="intro-text shared-bg">
+            Explore the ultimate library of high-performance <strong>Gemini AI</strong> and <strong>Gemini AI Pro</strong> prompts designed to unlock maximum creativity, efficiency, and intelligence. Whether you are generating detailed research reports, comparing products, drafting study plans, writing resumes, analyzing images, or building advanced solutions with <strong>Gemini AI</strong>, our curated <strong>Gemini</strong> prompt templates deliver precise, professional results instantly. Simply click <strong>Copy Prompt</strong> and experience the next generation of AI power with <strong>Gemini</strong>.
+        </div>
+
+        <!-- 1. Gemini Prompt for Research Reports -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>1. Gemini Prompt for Research Reports</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Role: Act as a Senior Research Analyst, Subject Matter Expert, Data Interpreter, and Professional Report Writer.
+Context: I need a well-researched, accurate, and professional report on the topic below.
+Topic: [Insert Topic]
+Task: Create a comprehensive research report based on credible information, evidence, and logical analysis.
+Goals:
+- Explain the topic clearly and accurately.
+- Present key findings, trends, insights, opportunities, challenges, and implications.
+- Support conclusions with relevant facts, data, examples, and references where available.
+- Provide actionable recommendations.
+Instructions:
+- Research and analyze the topic from multiple perspectives.
+- Use clear, objective, and professional language.
+- Distinguish facts from assumptions.
+- Highlight important statistics, findings, and evidence.
+- Identify gaps, risks, limitations, and future outlook.
+- If information is incomplete, state reasonable assumptions.
+- Tailor the depth of analysis to the complexity of the topic.
+Constraints:
+- Be accurate, unbiased, and evidence-based.
+- Avoid unsupported claims and filler content.
+- Organize information logically with clear headings.
+- Prioritize quality, clarity, and practical value.
+Output Format:
+- Executive Summary
+- Introduction
+- Background & Context
+- Research Methodology
+- Key Findings
+- Data & Evidence Analysis
+- Opportunities & Challenges
+- Risks & Limitations
+- Future Trends & Outlook
+- Recommendations
+- Conclusion
+- References/Sources
+Deliver a detailed, professional, publication-ready research report.</div>
+        </div>
+
+        <!-- 2. Gemini Prompt to Compare Products -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>2. Gemini Prompt to Compare Products</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">You are an expert Research Analyst and Professional Report Writer.
+Create a comprehensive, evidence-based research report on the topic below.
+Topic: [Insert Topic]
+Instructions:
+- Explain the topic from basic to advanced level.
+- Use accurate facts, data, statistics, research findings, and real-world examples where available.
+- Analyze key trends, opportunities, challenges, risks, and future implications.
+- Compare relevant viewpoints or approaches when applicable.
+- Distinguish facts from assumptions and note uncertainties.
+- Provide actionable insights and recommendations.
+- Maintain a professional, objective, and analytical tone.
+- Avoid filler, repetition, and unsupported claims.
+Output Format:
+- Title
+- Executive Summary
+- Introduction
+- Background & Context
+- Key Concepts
+- Analysis
+- Findings & Evidence
+- Trends
+- Opportunities
+- Challenges & Risks
+- Case Studies / Examples
+- Future Outlook
+- Recommendations
+- Conclusion
+- References
+Make the report clear, well-structured, publication-ready, and suitable for academic, business, or professional use.</div>
+        </div>
+
+        <!-- 3. Gemini Prompt for Study Plans -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>3. Gemini Prompt for Study Plans</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Act as an expert Academic Coach and Study Planner.
+Create a personalized study plan based on:
+Subject: [Insert Subject]
+Goal: [Exam, Certification, Skill, etc.]
+Current Level: [Beginner/Intermediate/Advanced]
+Target Outcome: [Desired Result]
+Study Duration: [Days/Weeks/Months]
+Daily Study Time: [Hours]
+Learning Style: [Reading/Visual/Audio/Practical/Mixed]
+Strengths: [List]
+Weaknesses: [List]
+Resources: [Books, Courses, Websites, etc.]
+Constraints: [Work, School, Deadlines, etc.]
+Instructions:
+- Analyze the information provided.
+- Break learning into clear phases.
+- Prioritize important topics first.
+- Create realistic daily and weekly schedules.
+- Include revision, practice, and assessments.
+- Recommend effective study methods and resources.
+- Add milestones, progress tracking, and success metrics.
+- Identify challenges with practical solutions.
+- Adapt the plan to the user's level and goals.
+- Keep recommendations actionable and result-focused.
+Output Format:
+- Goal Summary
+- Learning Roadmap
+- Weekly Study Plan
+- Daily Study Schedule
+- Recommended Resources
+- Progress Tracking System
+- Common Obstacles & Solutions
+- Final Action Plan
+Ensure the plan is personalized, realistic, measurable, and optimized for maximum learning results.</div>
+        </div>
+
+        <!-- 4. Gemini Prompt to Explain Any Topic -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>4. Gemini Prompt to Explain Any Topic</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Role: Act as an expert educator and subject specialist who explains any topic clearly for any audience.
+Topic: [Insert Topic]
+Audience Level: [Beginner / Intermediate / Advanced / Professional]
+Task: Explain the topic in a simple, accurate, practical, and easy-to-understand way.
+Instructions:
+- Start with a clear definition and explain why the topic matters.
+- Break the topic into logical sections and explain step by step.
+- Match the explanation to the selected audience level.
+- Define important terms before using advanced concepts.
+- Use examples, analogies, and real-world applications where useful.
+- Cover key concepts, benefits, limitations, and common misconceptions.
+- Avoid unnecessary jargon, repetition, and filler.
+- If the topic is broad, divide it into major subtopics.
+- Provide practical insights, tips, or best practices when relevant.
+Output Format:
+- Topic Overview
+- Definition
+- Importance
+- Core Explanation
+- Key concepts
+- Step-by-step breakdown
+- Examples & Applications
+- Simple examples
+- Real-world uses
+- Benefits & Limitations
+- Advantages
+- Challenges
+- Common Misconceptions
+- Mistakes to avoid
+- Key Takeaways
+- Most important points
+- Further Learning
+- Related topics to explore
+Write in a clear, engaging, and professional style that maximizes understanding and retention.</div>
+        </div>
+
+        <!-- 5. Gemini Prompt for Latest News Summaries -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>5. Gemini Prompt for Latest News Summaries</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">You are an expert AI News Analyst.
+Task: Provide accurate, unbiased, and up-to-date news summaries for the topic given by the user.
+Topic: [Insert News Topic]
+Time Range: [Today / Last 24 Hours / Last 7 Days / Custom]
+Instructions:
+- Focus on the most important recent developments.
+- Use verified information only.
+- Avoid rumors, speculation, and unsupported claims.
+- Combine duplicate reports into one clear update.
+- Separate facts from opinions.
+- Explain complex topics simply when needed.
+- Mention uncertainty if information is still developing.
+- Do not invent facts, statistics, quotes, or sources.
+- Keep the response clear, concise, and professional.
+Output Format:
+- Latest News Summary (Brief overview of the most important developments)
+- Key Updates (Update 1, Update 2, Update 3)
+- Why It Matters (Key impact and significance)
+- Important Context (Relevant background information)
+- Emerging Trends or Outlook (Future developments based only on confirmed information)
+- Quick Takeaway (1–3 sentence summary of the main points)
+Quality Standards: Accurate, current, objective, clear, structured, and actionable.
+Generate the news summary now using the provided topic.</div>
+        </div>
+
+        <!-- 6. Gemini Prompt for Travel Tips -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>6. Gemini Prompt for Travel Tips</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Act as a professional travel planner and itinerary expert. Create a realistic, personalized, and well-organized day-by-day travel itinerary based on the information provided.
+Plan the trip according to the destination, dates, budget, interests, travel style, group size, accommodation, transportation, food preferences, and special requirements. Prioritize important attractions, group nearby locations together, minimize unnecessary travel, and balance activities with meals, transportation, breaks, and free time.
+Include practical transportation suggestions, estimated costs where possible, meal recommendations, booking requirements, and useful destination-specific tips. Keep the schedule realistic and within the stated budget. Do not invent prices, schedules, opening hours, or availability; clearly identify estimates or information that should be verified. If essential information is missing, ask concise questions before creating the itinerary.
+Format the output as:
+Trip Overview:
+- Destination:
+- Dates:
+- Travelers:
+- Travel style:
+- Estimated budget:
+- Key priorities:
+Day 1 — [Date/Theme]
+- Morning:
+- Afternoon:
+- Evening:
+- Meals:
+- Transportation:
+- Estimated cost:
+(Repeat for each day)
+Booking & Preparation Checklist:
+- Reservations
+- Tickets
+- Transportation
+- Documents/requirements
+- Essential items
+Estimated Budget Breakdown:
+- Accommodation:
+- Transportation:
+- Food:
+- Activities:
+- Miscellaneous:
+- Total:
+Travel Tips: Provide the most useful practical tips for this trip.
+Use these details:
+- Destination: [Enter destination]
+- Travel dates: [Enter dates]
+- Number of travelers: [Enter number]
+- Budget: [Enter budget and currency]
+- Interests: [Enter interests]
+- Travel style: [Relaxed / Balanced / Packed]
+- Accommodation preference: [Enter preference]
+- Transportation preference: [Enter preference]
+- Food preferences: [Enter preferences]
+- Must-visit places: [Enter places]
+- Places/activities to avoid: [Enter preferences]
+- Special requirements: [Enter requirements]</div>
+        </div>
+
+        <!-- 7. Gemini Prompt for Resume and Cover Letter -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>7. Gemini Prompt for Resume and Cover Letter</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Act as an expert resume strategist and professional cover letter writer. Create a tailored, ATS-friendly resume and cover letter based strictly on the candidate information and target job provided.
+Input:
+- Job Title: [Enter job title]
+- Company: [Enter company name]
+- Job Description: [Paste job description]
+- Candidate Information: [Education, experience, skills, achievements, certifications, projects, etc.]
+- Preferred Tone: [Professional/Confident/etc.]
+Instructions:
+- Analyze the job description and identify its key responsibilities, required skills, qualifications, and relevant keywords.
+- Tailor the resume specifically to the role, prioritizing the candidate's most relevant experience and achievements.
+- Use clear, concise, achievement-focused language and strong action verbs.
+- Optimize naturally for ATS without keyword stuffing.
+- Never invent, exaggerate, or assume qualifications, experience, achievements, or metrics. Use placeholders when essential information is missing.
+- Write a compelling cover letter that connects the candidate's strongest qualifications to the role and company.
+- Keep both documents professional, concise, readable, and relevant to the target position.
+Output:
+Return only:
+- Resume — professionally structured and ATS-friendly.
+- Cover Letter — personalized, persuasive, and ready to edit or send.
+Do not include analysis, explanations, notes, or commentary.</div>
+        </div>
+
+        <!-- 8. Gemini Prompt for Image Analysis -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>8. Gemini Prompt for Image Analysis</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Act as an expert image analyst. Analyze the provided image carefully and give an accurate, detailed, and objective assessment.
+Task: Identify and explain everything relevant in the image, including objects, people, text, layout, visual details, relationships, context, and any notable features.
+Instructions:
+- Examine the entire image before responding.
+- Describe only what is visible or strongly supported by the image.
+- Clearly distinguish observations from reasonable inferences.
+- Accurately read and transcribe visible text when possible.
+- Identify important details without unnecessary repetition.
+- If something is unclear, damaged, hidden, or unreadable, state that instead of guessing.
+- Organize the analysis with clear headings and concise bullet points.
+- Adapt the depth of analysis to the image and the user's request.
+Output: Provide a structured, professional analysis covering:
+- Overall description
+- Main subjects and objects
+- Text and labels
+- Important visual details
+- Layout and relationships
+- Context or likely purpose
+- Unclear or uncertain elements
+- Key findings
+If the user asks a specific question about the image, prioritize that question while including only relevant supporting details.</div>
+        </div>
+
+        <!-- 9. Gemini Prompt for Language Learning -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>9. Gemini Prompt for Language Learning</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Act as an expert language-learning tutor and curriculum designer. Help me learn [TARGET LANGUAGE] according to my level, goals, interests, and available study time. Assess my level if needed, then create a practical learning plan focused on [LEARNING GOAL]. Teach relevant vocabulary, grammar, pronunciation, reading, writing, listening, and conversation with clear explanations, realistic examples, exercises, and corrections. Gradually increase difficulty and adapt lessons to my progress. Prioritize practical communication, accuracy, retention, and steady improvement without unnecessary information.
+My details:
+- Target language: [LANGUAGE]
+- Current level: [LEVEL]
+- Learning goal: [GOAL]
+- Native language: [NATIVE LANGUAGE]
+- Study time: [TIME]
+- Preferred learning style: [STYLE]
+Return each lesson or plan in a clear, structured, and easy-to-follow format.</div>
+        </div>
+
+        <!-- 10. Gemini Prompt for Meal and Workout Plans -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>10. Gemini Prompt for Meal and Workout Plans</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Act as an expert nutrition and fitness planning specialist. Using the user’s information, create a practical, balanced meal and workout plan that matches their goals, fitness level, schedule, preferences, available equipment, and dietary needs.
+First identify the user’s goal, experience level, dietary preferences, limitations, and available resources. If important information is missing, ask only the necessary questions; otherwise proceed with reasonable assumptions.
+Create a clear plan with:
+- Daily or weekly meal schedule with portions and suitable alternatives
+- Calories and basic macronutrient guidance when appropriate
+- Workout schedule with exercises, sets, reps, rest periods, and progression
+- Warm-up and recovery guidance
+- Practical tips for consistency and adherence
+Keep the plan realistic, flexible, affordable, and easy to follow. Avoid extreme diets, unsafe training, unsupported claims, and unnecessary complexity. Clearly state assumptions and recommend professional medical or nutrition advice when the user’s situation requires it.
+Format the final answer with clear headings, tables where useful, and actionable instructions. Prioritize accuracy, personalization, safety, and consistency.</div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT FOR COPY BUTTON -->
+    <script>
+        function copyPrompt(button) {
+            const promptBox = button.closest('.prompt-card').querySelector('.prompt-box');
+            const textToCopy = promptBox.innerText;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                button.style.background = '#22c55e';
+                button.style.borderColor = '#22c55e';
+
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = '';
+                    button.style.borderColor = '#38bdf8';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
