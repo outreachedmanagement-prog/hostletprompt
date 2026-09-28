@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Claude AI Prompts | Hostlet Prompt</title>
+    <style>
+        /* =========================================
+            UNIFIED BACKGROUND & GLOBAL STYLING
+        ========================================= */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            background-image: linear-gradient(to bottom, #100950, #04125D, #030725, #000000), url('https://hostletprompt.online/wp-content/uploads/2026/09/ChatGPT-Image-Sep-4-2026-06_38_32-PM.png');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+        }
+
+        /* =========================================
+            SHARED BACKGROUND STYLE FOR ALL BOXES
+        ========================================= */
+        .shared-bg {
+            background-color: #04125D;
+            background-image: linear-gradient(to bottom, #100950, #04125D, #030725, #000000), url('https://hostletprompt.online/wp-content/uploads/2026/09/ChatGPT-Image-Sep-4-2026-06_38_32-PM.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        /* =========================================
+            NAVIGATION BAR STYLING
+        ========================================= */
+        .hostlet-nav-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0 !important;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hp-about-header {
+            width: 100%;
+            max-width: 1300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hp-logo-title-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .hp-small-badge {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #04125D, #000000);
+            border: 1.5px solid #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+
+        .hp-small-badge-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: #38bdf8;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+        }
+
+        .hp-header-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+        }
+
+        .hp-header-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .hp-top-nav-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1.5px solid #38bdf8;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 10px rgba(16, 9, 80, 0.4);
+        }
+
+        .hp-top-nav-btn:hover {
+            border-color: #38bdf8;
+            background: rgba(16, 9, 80, 0.9);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+        }
+
+        .hp-top-nav-btn.active-page {
+            border-color: #38bdf8;
+            background: rgba(16, 9, 80, 0.8);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+        }
+
+        /* =========================================
+            MAIN CONTENT CONTAINER & LIGHTING HEADING
+        ========================================= */
+        .content-container {
+            max-width: 1000px;
+            margin: 20px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .lighting-heading-box {
+            text-align: center;
+            padding: 40px 20px;
+            border: 2px solid #38bdf8;
+            border-radius: 20px;
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.4), inset 0 0 20px rgba(56, 189, 248, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .lighting-heading-box h1 {
+            font-size: 38px;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+            line-height: 1.4;
+        }
+
+        .lighting-heading-box h1 span {
+            color: #38bdf8;
+            text-shadow: 0 0 25px rgba(56, 189, 248, 1);
+        }
+
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #d1d5db;
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* =========================================
+            PROMPTS CARDS & SCROLLABLE BOX STYLING
+        ========================================= */
+        .prompt-card {
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .prompt-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+        }
+
+        .prompt-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .prompt-card h3 {
+            color: #38bdf8;
+            font-size: 20px;
+            margin: 0;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #04125D, #38bdf8);
+            color: #ffffff;
+            border: 1px solid #38bdf8;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+        }
+
+        .copy-btn:hover {
+            background: #38bdf8;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+        }
+
+        .prompt-box {
+            background: rgba(0, 0, 0, 0.85);
+            border-left: 4px solid #38bdf8;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #e5e7eb;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        /* Custom Scrollbar */
+        .prompt-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .prompt-box::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+        .prompt-box::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .hp-about-header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .lighting-heading-box h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <div class="hostlet-nav-wrapper shared-bg">
+        <div class="hp-about-header">
+            <a href="https://hostletprompt.online/" class="hp-logo-title-area">
+                <div class="hp-small-badge">
+                    <span class="hp-small-badge-text">HP</span>
+                </div>
+                <h2 class="hp-header-title">Hostlet Prompt <span style="color: #38bdf8; text-shadow: 0 0 12px rgba(56, 189, 248, 0.8);">.online</span></h2>
+            </a>
+            <div class="hp-header-nav">
+                <a href="https://hostletprompt.online/free-prompt-generator/" class="hp-top-nav-btn">Prompt Generator</a>
+                <a href="https://hostletprompt.online/best-prompts-for-cloudai/" class="hp-top-nav-btn active-page">Prompt for Cloud AI</a>
+                <a href="https://hostletprompt.online/best-prompts-for-chatgpt/" class="hp-top-nav-btn">Prompt for ChatGPT</a>
+                <a href="https://hostletprompt.online/best-prompts-for-gemini/" class="hp-top-nav-btn">Prompt for Gemini</a>
+                <a href="https://hostletprompt.online/best-prompts-for-webdevelpment/" class="hp-top-nav-btn">Prompt for Web Development</a>
+                <a href="https://hostletprompt.online/about-us/" class="hp-top-nav-btn">About Us</a>
+                <a href="https://hostletprompt.online/write-for-us/" class="hp-top-nav-btn">Write for Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="content-container">
+        
+        <!-- LIGHTING HEADING BOX -->
+        <div class="lighting-heading-box shared-bg">
+            <h1>Best<br><span>Claude AI</span><br>Prompts</h1>
+        </div>
+
+        <!-- SEO CONTENT INTRODUCTION -->
+        <div class="intro-text shared-bg">
+            Welcome to the ultimate collection of expert-crafted prompts designed specifically for <strong>Claude AI</strong> by Anthropic. Whether you are leveraging <strong>Claude Anthropic</strong> for professional writing, deep technical analysis, or strategic planning, these optimized prompts ensure you get accurate, high-value results. Explore our curated list of <strong>AI Claude</strong> templates below to supercharge your workflow with <strong>Anthropic Claude</strong> models.
+        </div>
+
+        <!-- 1. AI Prompt for Writing Professional Emails -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>1. AI Prompt for Writing Professional Emails</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Act as an expert business communication specialist and professional email writer.
+Using the information provided below, write a polished, ready-to-send email that is clear, professional, and appropriate for the recipient and purpose.
+Information:
+Purpose:
+Recipient:
+Sender:
+Key Details:
+Tone:
+Call to Action:
+Deadline (Optional):
+Additional Instructions (Optional):
+Write a concise, relevant subject line, begin with an appropriate greeting, clearly state the purpose, organize the content logically, and incorporate all provided details naturally without repetition. Maintain the requested tone throughout, use clear and grammatically correct language, and end with a professional closing and the sender's name.
+If optional information is missing, simply omit it. Do not invent names, dates, facts, or other important details. Keep the email concise unless the request requires more detail.
+Return only the completed email with the subject line.</div>
+        </div>
+
+        <!-- 2. AI Prompt for Cold Outreach Emails -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>2. AI Prompt for Cold Outreach Emails</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">B2B Cold Outreach Email Generator
+Act as an expert B2B Sales Copywriter. Write personalized, human-sounding cold emails using only the information I provide. If required information is missing, ask only the minimum necessary questions. Never invent facts.
+Inputs
+Business/Product
+Industry
+Target Audience
+Recipient Name
+Recipient Role
+Company
+Pain Points
+Offer
+Unique Value Proposition
+Key Benefits
+Social Proof (Optional)
+CTA
+Tone
+Email Length
+Additional Context (Optional)
+Task
+Create a concise, personalized cold email that:
+Starts with a relevant hook.
+Addresses the recipient's pain points.
+Clearly communicates the value of the offer.
+Builds credibility naturally.
+Focuses on outcomes, not features.
+Uses short, conversational paragraphs.
+Avoids fluff, hype, clichés, buzzwords, spam language, and emojis.
+Includes one low-friction CTA.
+Ends with a professional sign-off.
+Output
+10 Subject Lines
+5 Curiosity
+3 Benefit
+2 Personalized
+Cold Outreach Email
+Optimization Notes
+Subject line
+Opening
+CTA
+5 Personalization Ideas</div>
+        </div>
+
+        <!-- 3. AI Prompt for Follow-Up Emails After Meetings -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>3. AI Prompt for Follow-Up Emails After Meetings</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Role
+You are an expert Business Communication Specialist and Email Copywriter specializing in professional follow-up emails after meetings.
+Task
+Write a personalized follow-up email based only on the information provided. The email should strengthen the relationship, summarize the meeting, confirm agreed actions, and encourage the next step.
+Instructions
+Thank the recipient for their time.
+Summarize the meeting clearly and concisely.
+Highlight key discussion points and decisions.
+Confirm action items, owners, and deadlines (if provided).
+Reinforce the value of the discussion.
+End with a clear, relevant call to action.
+Match the requested tone (e.g., formal, professional, friendly, executive).
+Use natural, confident, and concise language with short paragraphs.
+Do not invent facts, commitments, or timelines.
+If information is missing, omit it instead of guessing.
+Correct grammar, spelling, and readability automatically.
+Input
+Recipient Name:
+Sender Name:
+Company:
+Meeting Purpose:
+Meeting Summary:
+Key Discussion Points:
+Decisions Made:
+Action Items:
+Next Steps:
+Deadlines (optional):
+Tone:
+Call to Action:
+Additional Notes (optional):
+Output
+Subject Line
+Follow-Up Email
+The email must be polished, personalized, actionable, and ready to send.</div>
+        </div>
+
+        <!-- 4. AI Prompt for Social Media Content Calendar -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>4. AI Prompt for Social Media Content Calendar</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Role
+You are an expert Social Media Strategist and Content Marketing Specialist. Your goal is to create a high-performing, platform-specific social media content calendar that increases engagement, brand awareness, and business growth.
+Input
+Business/Brand:
+Industry/Niche:
+Target Audience:
+Goals:
+Platforms:
+Time Period:
+Posting Frequency:
+Products/Services:
+Brand Voice:
+Key Topics:
+Promotions/Events (Optional):
+If essential information is missing, ask only the minimum number of follow-up questions.
+Task
+Create a strategic content calendar tailored to the provided business, audience, goals, and platforms.
+Instructions
+Adapt content for each platform's best practices.
+Balance educational, promotional, entertaining, and community-building content.
+Include diverse content types such as tips, stories, behind-the-scenes, testimonials, FAQs, trends, polls, user-generated content, and promotions where relevant.
+For each post, provide:
+Content idea
+Hook
+Recommended format
+Caption
+Relevant hashtags
+Clear CTA
+Keep content original, practical, engaging, and non-repetitive.
+Use only the provided information.
+Output
+Strategy
+Objectives
+Content Pillars
+Audience Summary
+Content Calendar
+| Date/Day | Platform | Content Idea | Hook | Format | Caption | Hashtags | CTA |
+Recommendations
+Best posting times
+Repurposing opportunities
+Key performance metrics to track</div>
+        </div>
+
+        <!-- 5. AI Prompt for SEO Blog Writing -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>5. AI Prompt for SEO Blog Writing</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Short SEO Blog Writing Prompt
+You are an SEO Content Expert.
+Write a high-quality, search-intent-focused blog post using the details below.
+Inputs
+Topic: [TOPIC]
+Audience: [AUDIENCE]
+Primary Keyword: [PRIMARY KEYWORD]
+Secondary Keywords: [SECONDARY KEYWORDS]
+Word Count: [WORD COUNT]
+Goal: [TRAFFIC/LEADS/SALES/EDUCATION/BRAND]
+Requirements
+Match search intent.
+Follow E-E-A-T.
+Use keywords naturally.
+Provide accurate, actionable, and engaging content.
+Avoid fluff and keyword stuffing.
+Include the primary keyword in the title, introduction, one H2, and conclusion.
+Output
+SEO Title
+Meta Title (&le;60 chars)
+Meta Description (&le;155 chars)
+URL Slug
+Search Intent
+Keywords
+Introduction
+Main Article (H2/H3)
+Key Takeaways
+FAQ (5&ndash;8)
+Conclusion
+CTA
+Ensure the content is original, well-structured, readable, and close to the target word count.</div>
+        </div>
+
+        <!-- 6. AI Prompt for LinkedIn Posts -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>6. AI Prompt for LinkedIn Posts</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Act as a LinkedIn Content Strategist and Personal Branding Expert.
+Create a high-performing LinkedIn post based on the details provided.
+Input:
+Topic: [TOPIC]
+Goal: [Engagement / Thought Leadership / Personal Branding / Lead Generation / Brand Awareness / Promotion]
+Target Audience: [AUDIENCE]
+Industry: [INDUSTRY]
+Key Message: [MAIN IDEA]
+Supporting Details or Story (Optional): [DETAILS]
+Tone: [Professional / Conversational / Educational / Inspirational / Bold]
+CTA: [CALL TO ACTION]
+Instructions:
+Start with a strong hook that captures attention immediately.
+Focus on one clear message.
+Write in a natural, human, and credible voice.
+Use short paragraphs for readability.
+Include relevant insights, lessons, examples, or actionable takeaways.
+Deliver value before promotion.
+Create curiosity and encourage engagement.
+Avoid fluff, jargon, clichés, and generic statements.
+End with a compelling call-to-action aligned with the goal.
+Tailor the content to the audience and industry.
+Output:
+LinkedIn Post (150&ndash;300 words)
+3 Alternative Hooks
+Suggested CTA
+5 Relevant Hashtags</div>
+        </div>
+
+        <!-- 7. AI Prompt for High-Converting Product Descriptions -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>7. AI Prompt for High-Converting Product Descriptions</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">AI Prompt for High-Converting Product Descriptions
+You are an Expert E-commerce Copywriter.
+Create a high-converting product description that increases purchase intent and clearly communicates value.
+Product Details
+Product Name: [Insert Product Name]
+Category: [Insert Category]
+Target Audience: [Insert Audience]
+Features: [Insert Features]
+Benefits: [Insert Benefits]
+USP: [Insert USP]
+Brand Voice: [Professional/Luxury/Friendly/Premium/Technical]
+CTA Goal: [Insert CTA]
+Instructions
+Start with a compelling hook.
+Focus on benefits before features.
+Convert features into real-world outcomes.
+Address customer pain points and desires.
+Highlight key differentiators and USP.
+Use clear, persuasive language matching the brand voice.
+Avoid fluff, clichés, and unsupported claims.
+End with a strong CTA.
+Output
+Product Description
+[Description]
+Key Benefits
+Benefit 1
+Benefit 2
+Benefit 3
+Benefit 4
+Benefit 5
+Why Choose This Product
+Advantage 1
+Advantage 2
+Advantage 3
+CTA
+[Call to Action]</div>
+        </div>
+
+        <!-- 8. AI Prompt for Viral Instagram Captions -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>8. AI Prompt for Viral Instagram Captions</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Universal Expert Response Prompt
+Role: Act as a subject-matter expert in [TOPIC].
+Task: Analyze [TOPIC] and provide an accurate, practical, and actionable response suitable for both beginners and professionals.
+Instructions:
+Focus on clarity, accuracy, and real-world value.
+Use clear headings and logical structure.
+Explain key concepts concisely.
+Provide actionable steps, recommendations, or frameworks.
+Include examples when useful.
+Highlight risks, limitations, and common mistakes.
+State assumptions if information is missing.
+Avoid filler, repetition, and unsupported claims.
+Output Format:
+Overview
+Key Insights
+Action Plan
+Examples (if applicable)
+Best Practices
+Common Mistakes
+Conclusion
+Topic: [TOPIC]</div>
+        </div>
+
+        <!-- 9. AI Prompt for Professional Apology Emails -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>9. AI Prompt for Professional Apology Emails</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">You are an expert business communication and corporate correspondence specialist.
+Create a professional apology email using the details below.
+Recipient: [Name/Role]
+Situation: [Issue or mistake]
+Impact: [Effect on recipient]
+Reason (Optional): [Brief cause]
+Corrective Actions: [Steps taken or planned]
+Desired Outcome: [Resolution or objective]
+Tone: [Professional, Formal, Empathetic, Executive, Customer Service]
+Length: [Short, Medium, Detailed]
+Requirements
+Acknowledge the issue clearly.
+Offer a sincere and credible apology.
+Accept appropriate responsibility without excessive self-blame.
+Briefly explain the situation without making excuses.
+Highlight corrective actions and preventive measures.
+Rebuild confidence and maintain a positive relationship.
+Use clear, concise, and professional language.
+Adapt the message to the audience and context.
+Constraints
+Avoid defensive, emotional, or blaming language.
+Avoid generic or vague apologies.
+Do not over-explain the mistake.
+Do not make unrealistic promises.
+Output Format
+Subject:
+Email Body:
+Generate a polished, ready-to-send apology email that is professional, empathetic, solution-focused, and aligned with the specified tone.</div>
+        </div>
+
+        <!-- 10. AI Prompt for YouTube Video Scripts -->
+        <div class="prompt-card shared-bg">
+            <div class="prompt-header-flex">
+                <h3>10. AI Prompt for YouTube Video Scripts</h3>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+            </div>
+            <div class="prompt-box">Role
+You are an expert YouTube Scriptwriter and Audience Retention Strategist.
+Task
+Create a high-retention YouTube video script on [TOPIC] for [TARGET AUDIENCE].
+Objectives
+Grab attention immediately.
+Deliver accurate, valuable, and engaging content.
+Maximize watch time and retention.
+Encourage audience interaction and action.
+Instructions
+Open with a strong hook that creates curiosity, urgency, or a clear benefit.
+Briefly explain why the topic matters.
+Organize the script into clear sections with smooth transitions.
+Use relevant stories, examples, data, insights, or case studies.
+Keep the tone conversational and engaging.
+Eliminate filler and repetition.
+Answer likely audience questions naturally.
+Add engagement prompts where appropriate.
+End with a memorable conclusion and strong CTA.
+Match the complexity and language to the audience.
+Requirements
+Prioritize clarity, accuracy, and value.
+Maintain strong pacing throughout.
+Focus on actionable takeaways.
+Ensure every section keeps viewers interested.
+Output Format
+5 Video Title Ideas
+Hook
+Introduction
+Main Script (Sectioned)
+Engagement Prompts
+Key Takeaways
+Conclusion
+Call to Action
+3 Thumbnail Text Ideas
+Inputs
+Topic: [TOPIC]
+Target Audience: [TARGET AUDIENCE]
+Video Length: [SHORT / MEDIUM / LONG]
+Tone: [TONE]
+Goal: [EDUCATE / INFORM / ENTERTAIN / PERSUADE]</div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT FOR COPY BUTTON -->
+    <script>
+        function copyPrompt(button) {
+            const promptBox = button.closest('.prompt-card').querySelector('.prompt-box');
+            const textToCopy = promptBox.innerText;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                button.style.background = '#22c55e';
+                button.style.borderColor = '#22c55e';
+
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = '';
+                    button.style.borderColor = '#38bdf8';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
