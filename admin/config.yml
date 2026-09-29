@@ -1,8 +1,7 @@
 backend:
-  name: github
-  repo: outreachedmanagement-prog/hostletprompt
+  name: turbo-github
+  turbo_site_id: 18afb2b2-711b-4ae7-9277-b5e8de81f770
   branch: main
-  site_domain: polite-mooncake-b5886f.netlify.app
 
 collections:
   - name: "articles"
@@ -12,8 +11,8 @@ collections:
     slug: "{{slug}}"
     path: "{{slug}}/index"
 
-    media_folder: "images"
-    public_folder: "/images"
+    media_folder: ""
+    public_folder: ""
 
     fields:
       - label: "Title"
