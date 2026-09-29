@@ -2,9 +2,7 @@ backend:
   name: github
   repo: outreachedmanagement-prog/hostletprompt
   branch: main
-site_domain: polite-mooncake-b5886f.netlify.app
-media_folder: "images"
-public_folder: "/images"
+  site_domain: polite-mooncake-b5886f.netlify.app
 
 collections:
   - name: "articles"
@@ -12,6 +10,10 @@ collections:
     folder: "articles"
     create: true
     slug: "{{slug}}"
+    path: "{{slug}}/index"
+
+    media_folder: "images"
+    public_folder: "/images"
 
     fields:
       - label: "Title"
@@ -25,6 +27,7 @@ collections:
       - label: "Featured Image"
         name: "image"
         widget: "image"
+        required: true
 
       - label: "Body"
         name: "body"
