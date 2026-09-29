@@ -1,330 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Write For Us | Hostlet Prompt</title>
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(to bottom, #100950, #04125D, #030725, #000000);
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 50px 20px;
-        }
-        h1 {
-            color: #ffffff;
-            text-align: center;
-            font-size: 38px;
-            margin-bottom: 40px;
-            text-shadow: 0 0 18px rgba(56,189,248,0.7);
-        }
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .article-card {
-            background: rgba(4,18,93,0.85);
-            border: 1px solid rgba(56,189,248,0.5);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(56,189,248,0.2);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-        }
-        .article-thumb {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-        .article-content h3 {
-            color: #38bdf8;
-            margin-top: 0;
-            font-size: 20px;
-        }
-        .article-content p {
-            color: #cbd5e1;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        .read-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 15px;
-            background: #38bdf8;
-            color: #000000;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            text-align: center;
-        }
-        .read-btn:hover {
-            background: #0284c7;
-            color: #ffffff;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>Write For Us</h1>
-    <div class="articles-grid">
-        <!-- Articles will be loaded dynamically here -->
-    </div>
-</div>
-
 <script>
 /* =========================================================
-   HOSTLET PROMPT - DECAP CMS ARTICLES LOADER
-   This addition does NOT change the existing design,
-   navigation, links, or written content.
+   HOSTLET PROMPT - DECAP CMS ARTICLES LOADER
+   This addition does NOT change the existing design,
+   navigation, links, or written content.
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const repoOwner = "outreachedmanagement-prog";
-    const repoName = "hostletprompt";
-    const branch = "main";
+    const repoOwner = "outreachedmanagement-prog";
+    const repoName = "hostletprompt";
+    const branch = "main";
 
-    const articlesGrid = document.querySelector(".articles-grid");
+    const articlesGrid = document.querySelector(".articles-grid");
 
-    if (!articlesGrid) return;
+    if (!articlesGrid) return;
 
-    /* Get all article folders from GitHub */
-    fetch(
-        `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/${branch}?recursive=1`
-    )
-    .then(response => response.json())
-    .then(treeData => {
+    /* Get all article folders from GitHub */
+    fetch(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/${branch}?recursive=1`
+    )
+    .then(response => response.json())
+    .then(treeData => {
 
-        if (!treeData.tree) return;
+        if (!treeData.tree) return;
 
-        /* Find all CMS article index.md files */
-        const articleFiles = treeData.tree.filter(item =>
-            item.type === "blob" &&
-            item.path.startsWith("articles/") &&
-            item.path.endsWith("/index.md")
-        );
+        /* Find all CMS article index.md files */
+        const articleFiles = treeData.tree.filter(item =>
+            item.type === "blob" &&
+            item.path.startsWith("articles/") &&
+            item.path.endsWith("/index.md")
+        );
 
-        if (articleFiles.length === 0) return;
+        if (articleFiles.length === 0) return;
 
-        articleFiles.forEach(file => {
+        articleFiles.forEach(file => {
 
-            const rawUrl =
-                `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${file.path}`;
+            const rawUrl =
+                `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${file.path}`;
 
-            fetch(rawUrl)
-                .then(response => response.text())
-                .then(markdown => {
+            fetch(rawUrl)
+                .then(response => response.text())
+                .then(markdown => {
 
-                    const article = parseArticle(markdown);
+                    const article = parseArticle(markdown);
 
-                    if (!article.title) return;
+                    if (!article.title) return;
 
-                    const articleFolder =
-                        file.path.replace("/index.md", "");
+                    const articleFolder =
+                        file.path.replace("/index.md", "");
 
-                    const articleSlug =
-                        articleFolder.replace("articles/", "");
+                    const articleSlug =
+                        articleFolder.replace("articles/", "");
 
-                    createArticleCard(
-                        article,
-                        articleSlug
-                    );
+                    createArticleCard(
+                        article,
+                        articleSlug
+                    );
 
-                })
-                .catch(error => {
-                    console.log("Article could not be loaded:", error);
-                });
-        });
+                })
+                .catch(error => {
+                    console.log("Article could not be loaded:", error);
+                });
+        });
 
-    })
-    .catch(error => {
-        console.log("GitHub article loading error:", error);
-    });
+    })
+    .catch(error => {
+        console.log("GitHub article loading error:", error);
+    });
 
 
-    /* =========================================================
-       READ DECUP CMS FRONT MATTER
-    ========================================================= */
+    /* =========================================================
+       READ DECUP CMS FRONT MATTER
+    ========================================================= */
 
-    function parseArticle(markdown) {
+    function parseArticle(markdown) {
 
-        const article = {
-            title: "",
-            date: "",
-            image: "",
-            body: ""
-        };
+        const article = {
+            title: "",
+            date: "",
+            image: "",
+            body: ""
+        };
 
-        /* Front matter */
-        const frontMatterMatch =
-            markdown.match(/^---\s*([\s\S]*?)\s*---/);
+        /* Front matter */
+        const frontMatterMatch =
+            markdown.match(/^---\s*([\s\S]*?)\s*---/);
 
-        if (frontMatterMatch) {
+        if (frontMatterMatch) {
 
-            const frontMatter = frontMatterMatch[1];
+            const frontMatter = frontMatterMatch[1];
 
-            const titleMatch =
-                frontMatter.match(/title:\s*["']?(.+?)["']?\s*$/m);
+            const titleMatch =
+                frontMatter.match(/title:\s*["']?(.+?)["']?\s*$/m);
 
-            const dateMatch =
-                frontMatter.match(/date:\s*["']?(.+?)["']?\s*$/m);
+            const dateMatch =
+                frontMatter.match(/date:\s*["']?(.+?)["']?\s*$/m);
 
-            const imageMatch =
-                frontMatter.match(/image:\s*["']?(.+?)["']?\s*$/m);
+            const imageMatch =
+                frontMatter.match(/image:\s*["']?(.+?)["']?\s*$/m);
 
-            if (titleMatch)
-                article.title = cleanValue(titleMatch[1]);
+            if (titleMatch)
+                article.title = cleanValue(titleMatch[1]);
 
-            if (dateMatch)
-                article.date = cleanValue(dateMatch[1]);
+            if (dateMatch)
+                article.date = cleanValue(dateMatch[1]);
 
-            if (imageMatch)
-                article.image = cleanValue(imageMatch[1]);
-        }
+            if (imageMatch)
+                article.image = cleanValue(imageMatch[1]);
+        }
 
-        /* Article body */
-        article.body =
-            markdown.replace(/^---\s*[\s\S]*?\s*---/, "").trim();
+        /* Article body */
+        article.body =
+            markdown.replace(/^---\s*[\s\S]*?\s*---/, "").trim();
 
-        return article;
-    }
+        return article;
+    }
 
 
-    function cleanValue(value) {
+    function cleanValue(value) {
 
-        return value
-            .trim()
-            .replace(/^["']|["']$/g, "");
-    }
+        return value
+            .trim()
+            .replace(/^["']|["']$/g, "");
+    }
 
 
-    /* =========================================================
-       CREATE ARTICLE CARD
-    ========================================================= */
+    /* =========================================================
+       CREATE ARTICLE CARD
+    ========================================================= */
 
-    function createArticleCard(article, slug) {
+    function createArticleCard(article, slug) {
 
-        /* Prevent duplicate cards */
-        if (
-            articlesGrid.querySelector(
-                `[data-cms-article="${slug}"]`
-            )
-        ) {
-            return;
-        }
+        /* Prevent duplicate cards */
+        if (
+            articlesGrid.querySelector(
+                `[data-cms-article="${slug}"]`
+            )
+        ) {
+            return;
+        }
 
-        const card = document.createElement("div");
+        const card = document.createElement("div");
 
-        card.className = "article-card shared-bg";
+        card.className = "article-card shared-bg";
 
-        card.setAttribute(
-            "data-cms-article",
-            slug
-        );
+        card.setAttribute(
+            "data-cms-article",
+            slug
+        );
 
-        /* Image */
-        const image = document.createElement("img");
+        /* Image */
+        const image = document.createElement("img");
 
-        image.className = "article-thumb";
+        image.className = "article-thumb";
 
-        image.alt = article.title;
+        image.alt = article.title;
 
-        let imageUrl = article.image;
+        let imageUrl = article.image;
 
-        /*
-            Decap may save the image path in different formats.
-            Convert repository paths into usable URLs.
-        */
+        /*
+           Decap may save the image path in different formats.
+           Convert repository paths into usable URLs.
+        */
 
-        if (imageUrl) {
+        if (imageUrl) {
 
-            imageUrl = imageUrl.trim();
+            imageUrl = imageUrl.trim();
 
-            if (imageUrl.startsWith("/images/")) {
+            if (imageUrl.startsWith("/images/")) {
 
-                imageUrl =
-                    `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}${imageUrl}`;
+                imageUrl =
+                    `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}${imageUrl}`;
 
-            } else if (imageUrl.startsWith("images/")) {
+            } else if (imageUrl.startsWith("images/")) {
 
-                imageUrl =
-                    `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${imageUrl}`;
+                imageUrl =
+                    `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${imageUrl}`;
 
-            } else if (
-                !imageUrl.startsWith("http://") &&
-                !imageUrl.startsWith("https://")
-            ) {
+            } else if (
+                !imageUrl.startsWith("http://") &&
+                !imageUrl.startsWith("https://")
+            ) {
 
-                imageUrl =
-                    `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${imageUrl}`;
-            }
-        }
+                imageUrl =
+                    `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${imageUrl}`;
+            }
+        }
 
-        if (imageUrl) {
-            image.src = imageUrl;
-        }
+        if (imageUrl) {
+            image.src = imageUrl;
+        }
 
-        /* Content */
-        const content = document.createElement("div");
+        /* Content */
+        const content = document.createElement("div");
 
-        content.className = "article-content";
+        content.className = "article-content";
 
-        /* Title */
-        const title = document.createElement("h3");
+        /* Title */
+        const title = document.createElement("h3");
 
-        title.textContent = article.title;
+        title.textContent = article.title;
 
-        /* Description */
-        const description = document.createElement("p");
+        /* Description */
+        const description = document.createElement("p");
 
-        const plainText =
-            article.body
-                .replace(/[#*_>`~-]/g, "")
-                .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-                .replace(/\n+/g, " ")
-                .trim();
+        const plainText =
+            article.body
+                .replace(/[#*_>`~-]/g, "")
+                .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+                .replace(/\n+/g, " ")
+                .trim();
 
-        description.textContent =
-            plainText.length > 160
-                ? plainText.substring(0, 160) + "..."
-                : plainText;
+        description.textContent =
+            plainText.length > 160
+                ? plainText.substring(0, 160) + "..."
+                : plainText;
 
-        /* Read button */
-        const readButton =
-            document.createElement("a");
+        /* Read button */
+        const readButton =
+            document.createElement("a");
 
-        readButton.href =
-    `/articles/${encodeURIComponent(slug)}/`;
+        readButton.href =
+    `/articles/${encodeURIComponent(slug)}/`;
 
-        readButton.className = "read-btn";
+        readButton.className = "read-btn";
 
-        readButton.textContent =
-            "Read Article";
+        readButton.textContent =
+            "Read Article";
 
-        content.appendChild(title);
-        content.appendChild(description);
-        content.appendChild(readButton);
+        content.appendChild(title);
+        content.appendChild(description);
+        content.appendChild(readButton);
 
-        card.appendChild(image);
-        card.appendChild(content);
+        card.appendChild(image);
+        card.appendChild(content);
 
-        articlesGrid.appendChild(card);
-    }
+        articlesGrid.appendChild(card);
+    }
 
 });
 </script>
-
-</body>
-</html>
