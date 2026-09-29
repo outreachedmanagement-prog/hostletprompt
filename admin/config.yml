@@ -3,6 +3,9 @@ backend:
   turbo_site_id: 18afb2b2-711b-4ae7-9277-b5e8de81f770
   branch: main
 
+media_folder: "articles"
+public_folder: ""
+
 collections:
   - name: "articles"
     label: "Articles"
@@ -10,9 +13,6 @@ collections:
     create: true
     slug: "{{slug}}"
     path: "{{slug}}/index"
-
-    media_folder: ""
-    public_folder: ""
 
     fields:
       - label: "Title"
