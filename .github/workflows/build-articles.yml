@@ -4,18 +4,28 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "articles/**"
+      - ".github/workflows/build-articles.yml"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: build-cms-articles
+  cancel-in-progress: false
+
 jobs:
   build-articles:
-    if: "!contains(github.event.head_commit.message, '[skip article build]')"
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip article build]')
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -23,9 +33,10 @@ jobs:
           node-version: 20
 
       - name: Install Markdown tools
-        run: npm install marked gray-matter
+        run: npm install --no-save marked gray-matter
 
-      - name: Build article pages
+      - name: Build article pages and article index
+        shell: bash
         run: |
           node <<'EOF'
           const fs = require("fs");
@@ -33,128 +44,533 @@ jobs:
           const { marked } = require("marked");
           const matter = require("gray-matter");
 
-          const articlesDir = "articles";
+          const SITE = "https://hostletprompt.online";
+          const ROOT = "articles";
+          const articles = [];
 
-          if (!fs.existsSync(articlesDir)) {
-            console.log("No articles folder found.");
+          const esc = v => String(v ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+
+          const slugify = v => String(v)
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9-]/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-|-$/g, "");
+
+          const description = (v, body) => {
+            const text = String(v || body || "")
+              .replace(/[#*_`>\[\]()!]/g, " ")
+              .replace(/\s+/g, " ")
+              .trim();
+
+            return text.length > 160
+              ? text.slice(0, 157) + "..."
+              : text;
+          };
+
+          if (!fs.existsSync(ROOT)) {
+            console.log("No articles folder found. Nothing to build.");
             process.exit(0);
           }
 
-          const folders = fs.readdirSync(articlesDir, { withFileTypes: true });
+          for (const entry of fs.readdirSync(ROOT, { withFileTypes: true })) {
+            let mdFile = null;
+            let outputDir = null;
+            let slug = null;
 
-          for (const folder of folders) {
-            if (!folder.isDirectory()) continue;
+            if (entry.isFile() && /\.md$/i.test(entry.name)) {
+              mdFile = path.join(ROOT, entry.name);
 
-            const articleDir = path.join(articlesDir, folder.name);
-            const markdownFile = path.join(articleDir, "index.md");
+              slug = slugify(
+                entry.name.replace(/\.md$/i, "")
+              );
 
-            if (!fs.existsSync(markdownFile)) continue;
+              outputDir = path.join(ROOT, slug);
 
-            const markdown = fs.readFileSync(markdownFile, "utf8");
-            const parsed = matter(markdown);
+            } else if (entry.isDirectory()) {
 
-            const title = parsed.data.title || folder.name;
-            const image = parsed.data.image || "";
-            const htmlContent = marked.parse(parsed.content);
+              const candidate = path.join(
+                ROOT,
+                entry.name,
+                "index.md"
+              );
 
-            let imageHtml = "";
-            if (image) {
-              imageHtml = `<img src="${image}" alt="${title}" class="article-image">`;
+              if (fs.existsSync(candidate)) {
+                mdFile = candidate;
+                slug = slugify(entry.name);
+                outputDir = path.join(ROOT, slug);
+              }
             }
 
-            const page = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${title} | Hostlet Prompt</title>
-<style>
-body {
-    margin: 0;
-    background: linear-gradient(to bottom, #100950, #04125D, #030725, #000000);
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-}
-.article-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 50px 20px;
-}
-.article-box {
-    background: rgba(4,18,93,0.85);
-    border: 1px solid rgba(56,189,248,0.5);
-    border-radius: 18px;
-    padding: 35px;
-    box-shadow: 0 0 30px rgba(56,189,248,0.25);
-}
-h1 {
-    color: #ffffff;
-    font-size: 40px;
-    line-height: 1.25;
-    margin-top: 0;
-    text-shadow: 0 0 18px rgba(56,189,248,0.7);
-}
-.article-image {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin: 20px 0 30px;
-}
-.article-content {
-    color: #d1d5db;
-    font-size: 17px;
-    line-height: 1.8;
-}
-.article-content h2, .article-content h3 {
-    color: #38bdf8;
-}
-.article-content a {
-    color: #38bdf8;
-}
-.back-button {
-    display: inline-block;
-    margin-bottom: 25px;
-    padding: 10px 18px;
-    border: 1px solid #38bdf8;
-    border-radius: 8px;
-    color: #ffffff;
-    text-decoration: none;
-}
-.back-button:hover {
-    background: #38bdf8;
-    color: #000000;
-}
-</style>
-</head>
-<body>
-<div class="article-wrapper">
-<a href="/write-for-us/" class="back-button">← Back to Articles</a>
-<div class="article-box">
-<h1>${title}</h1>
-${imageHtml}
-<div class="article-content">
-${htmlContent}
-</div>
-</div>
-</div>
-</body>
-</html>`;
+            if (!mdFile || !slug) continue;
 
-            const outputFile = path.join(articleDir, "index.html");
-            fs.writeFileSync(outputFile, page);
-            console.log("Built:", outputFile);
+            const parsed = matter(
+              fs.readFileSync(mdFile, "utf8")
+            );
+
+            const title = String(
+              parsed.data.title || slug
+            ).trim();
+
+            const image = String(
+              parsed.data.image || ""
+            ).trim();
+
+            const desc = description(
+              parsed.data.description,
+              parsed.content
+            );
+
+            const url = `${SITE}/articles/${slug}/`;
+
+            const html = marked.parse(
+              parsed.content
+            );
+
+            fs.mkdirSync(
+              outputDir,
+              { recursive: true }
+            );
+
+            const imageHtml = image
+              ? `<img class="article-image" src="${esc(image)}" alt="${esc(title)}">`
+              : "";
+
+            const page = `<!DOCTYPE html>
+          <html lang="en">
+          <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+
+          <title>${esc(title)} | Hostlet Prompt</title>
+
+          <meta name="description" content="${esc(desc)}">
+
+          <meta name="robots" content="index,follow">
+
+          <link rel="canonical" href="${esc(url)}">
+
+          <meta property="og:type" content="article">
+          <meta property="og:title" content="${esc(title)}">
+          <meta property="og:description" content="${esc(desc)}">
+          <meta property="og:url" content="${esc(url)}">
+
+          ${image ? `<meta property="og:image" content="${esc(image)}">` : ""}
+
+          <style>
+
+          * {
+              box-sizing: border-box;
           }
+
+          body {
+              margin: 0;
+              background: linear-gradient(
+                  to bottom,
+                  #100950,
+                  #04125D,
+                  #030725,
+                  #000
+              );
+              color: #fff;
+              font-family: Arial, sans-serif;
+          }
+
+          .wrap {
+              max-width: 900px;
+              margin: auto;
+              padding: 50px 20px;
+          }
+
+          .box {
+              background: rgba(4,18,93,.85);
+              border: 1px solid rgba(56,189,248,.5);
+              border-radius: 18px;
+              padding: 35px;
+              box-shadow: 0 0 30px rgba(56,189,248,.25);
+          }
+
+          h1 {
+              font-size: 40px;
+              line-height: 1.25;
+              margin: 0 0 25px;
+              text-shadow: 0 0 18px rgba(56,189,248,.7);
+          }
+
+          .article-image {
+              width: 100%;
+              max-height: 500px;
+              object-fit: cover;
+              border-radius: 12px;
+              margin: 0 0 30px;
+          }
+
+          .content {
+              color: #d1d5db;
+              font-size: 17px;
+              line-height: 1.8;
+          }
+
+          .content h2,
+          .content h3 {
+              color: #38bdf8;
+          }
+
+          .content a {
+              color: #38bdf8;
+          }
+
+          .back {
+              display: inline-block;
+              margin-bottom: 25px;
+              padding: 10px 18px;
+              border: 1px solid #38bdf8;
+              border-radius: 8px;
+              color: #fff;
+              text-decoration: none;
+          }
+
+          .back:hover {
+              background: #38bdf8;
+              color: #000;
+          }
+
+          </style>
+
+          </head>
+
+          <body>
+
+          <div class="wrap">
+
+          <a class="back" href="/articles/">
+              ← Back to Articles
+          </a>
+
+          <div class="box">
+
+          <h1>${esc(title)}</h1>
+
+          ${imageHtml}
+
+          <div class="content">
+          ${html}
+          </div>
+
+          </div>
+
+          </div>
+
+          </body>
+          </html>`;
+
+            fs.writeFileSync(
+              path.join(outputDir, "index.html"),
+              page,
+              "utf8"
+            );
+
+            articles.push({
+              title,
+              slug,
+              image,
+              desc,
+              url
+            });
+
+            console.log(
+              `Built: ${outputDir}/index.html`
+            );
+          }
+
+          articles.sort(
+            (a, b) =>
+              a.title.localeCompare(b.title)
+          );
+
+          const cards = articles.length
+            ? articles.map(a => `
+          <article class="card">
+
+            ${a.image
+              ? `<img src="${esc(a.image)}" alt="${esc(a.title)}">`
+              : ""}
+
+            <div>
+
+              <h2>
+                <a href="/articles/${encodeURIComponent(a.slug)}/">
+                  ${esc(a.title)}
+                </a>
+              </h2>
+
+              <p>
+                ${esc(a.desc)}
+              </p>
+
+              <a href="/articles/${encodeURIComponent(a.slug)}/">
+                Read Article →
+              </a>
+
+            </div>
+
+          </article>
+          `).join("")
+            : "<p>No articles have been published yet.</p>";
+
+          const index = `<!DOCTYPE html>
+
+          <html lang="en">
+
+          <head>
+
+          <meta charset="UTF-8">
+
+          <meta name="viewport"
+                content="width=device-width,initial-scale=1">
+
+          <title>Articles | Hostlet Prompt</title>
+
+          <meta name="description"
+                content="AI prompts, prompt engineering, ChatGPT, Gemini, Cloud AI and web development articles.">
+
+          <meta name="robots"
+                content="index,follow">
+
+          <link rel="canonical"
+                href="${SITE}/articles/">
+
+          <style>
+
+          * {
+              box-sizing: border-box;
+          }
+
+          body {
+              margin: 0;
+              background: linear-gradient(
+                  to bottom,
+                  #100950,
+                  #04125D,
+                  #030725,
+                  #000
+              );
+              color: #fff;
+              font-family: Arial, sans-serif;
+          }
+
+          .wrap {
+              max-width: 1100px;
+              margin: auto;
+              padding: 50px 20px;
+          }
+
+          .head {
+              text-align: center;
+              margin-bottom: 35px;
+          }
+
+          .head h1 {
+              font-size: 42px;
+              margin: 0 0 10px;
+              text-shadow:
+                  0 0 18px rgba(56,189,248,.7);
+          }
+
+          .head p {
+              color: #d1d5db;
+              line-height: 1.7;
+          }
+
+          .list {
+              display: grid;
+              grid-template-columns:
+                  repeat(
+                      auto-fit,
+                      minmax(280px, 1fr)
+                  );
+              gap: 24px;
+          }
+
+          .card {
+              overflow: hidden;
+              background: rgba(4,18,93,.85);
+              border: 1px solid rgba(56,189,248,.5);
+              border-radius: 18px;
+              box-shadow:
+                  0 0 25px rgba(56,189,248,.18);
+          }
+
+          .card img {
+              width: 100%;
+              height: 190px;
+              object-fit: cover;
+          }
+
+          .card div {
+              padding: 24px;
+          }
+
+          .card h2 {
+              line-height: 1.35;
+          }
+
+          .card a {
+              color: #38bdf8;
+              text-decoration: none;
+          }
+
+          .card p {
+              color: #d1d5db;
+              line-height: 1.7;
+          }
+
+          </style>
+
+          </head>
+
+          <body>
+
+          <div class="wrap">
+
+          <header class="head">
+
+          <h1>
+            Hostlet Prompt Articles
+          </h1>
+
+          <p>
+            Explore AI prompts, prompt engineering,
+            ChatGPT, Gemini, Cloud AI and web development articles.
+          </p>
+
+          </header>
+
+          <main class="list">
+
+          ${cards}
+
+          </main>
+
+          </div>
+
+          </body>
+
+          </html>`;
+
+          fs.writeFileSync(
+            path.join(ROOT, "index.html"),
+            index,
+            "utf8"
+          );
+
+          console.log(
+            `Built articles index with ${articles.length} article(s).`
+          );
+
           EOF
 
-      - name: Commit generated article pages
+      - name: Add article URLs to sitemap
+        shell: bash
+        run: |
+          node <<'EOF'
+          const fs = require("fs");
+
+          const site = "https://hostletprompt.online";
+          const root = "articles";
+
+          if (!fs.existsSync(root)) {
+            process.exit(0);
+          }
+
+          const slugs = fs.readdirSync(
+            root,
+            { withFileTypes: true }
+          )
+            .filter(
+              e =>
+                e.isDirectory() &&
+                fs.existsSync(
+                  `${root}/${e.name}/index.html`
+                )
+            )
+            .map(e => e.name);
+
+          let xml = fs.existsSync("sitemap.xml")
+            ? fs.readFileSync(
+                "sitemap.xml",
+                "utf8"
+              )
+            : `<?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+          </urlset>`;
+
+          const existing = new Set(
+            [...xml.matchAll(
+              /<loc>\s*([^<]+)\s*<\/loc>/g
+            )].map(
+              m => m[1].trim()
+            )
+          );
+
+          const urls = [
+            `${site}/articles/`,
+            ...slugs.map(
+              s => `${site}/articles/${s}/`
+            )
+          ];
+
+          const additions = urls
+            .filter(
+              u => !existing.has(u)
+            )
+            .map(
+              u =>
+                `  <url><loc>${u}</loc></url>`
+            );
+
+          if (additions.length) {
+
+            xml = xml.replace(
+              /<\/urlset>\s*$/i,
+              `${additions.join("\n")}
+          </urlset>`
+            );
+
+            fs.writeFileSync(
+              "sitemap.xml",
+              xml,
+              "utf8"
+            );
+
+            console.log(
+              `Added ${additions.length} URL(s) to sitemap.xml`
+            );
+
+          } else {
+
+            console.log(
+              "Sitemap already contains all article URLs."
+            );
+          }
+
+          EOF
+
+      - name: Commit generated pages and sitemap
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add articles/
+
+          git add articles/ sitemap.xml
+
           if git diff --cached --quiet; then
-            echo "No article pages to commit."
+            echo "No generated changes to commit."
           else
-            git commit -m "Build article pages [skip article build]"
+            git commit -m "Build CMS articles [skip article build]"
             git push
           fi
