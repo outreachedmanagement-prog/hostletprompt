@@ -427,10 +427,14 @@
 
             let imageUrl = article.image;
             if (imageUrl) {
-                imageUrl = imageUrl.replace(/^\/+/, "");
+                imageUrl = imageUrl.trim().replace(/^["']|["']$/g, "");
                 if (!/^https?:\/\//i.test(imageUrl)) {
-                    // Sahi folder path jahan image test-article folder ke andar mojood hai
-                    imageUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/articles/${slug}/${imageUrl}`;
+                    imageUrl = imageUrl.replace(/^\/+/, "");
+                    // Direct folder structure handle karne ke liye
+                    if (!imageUrl.startsWith("articles/")) {
+                        imageUrl = `articles/${slug}/${imageUrl}`;
+                    }
+                    imageUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${imageUrl}`;
                 }
                 image.src = imageUrl;
                 image.onerror = function () { this.style.display = "none"; };
@@ -457,7 +461,6 @@
             readButton.className = "read-btn";
             readButton.textContent = "Read Article";
             
-            // Modal click event jo 404 error ko hamesha ke liye khatam kar dega
             readButton.addEventListener("click", function () {
                 modalTitle.textContent = article.title;
                 modalBody.innerHTML = article.body.replace(/\n/g, "<br>");
