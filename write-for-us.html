@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://hostletprompt.online/">
     <title>Expert Insights & Articles Hub | Hostlet Prompt</title>
     <style>
         body {
@@ -427,14 +428,9 @@
 
             let imageUrl = article.image;
             if (imageUrl) {
-                imageUrl = imageUrl.trim().replace(/^["']|["']$/g, "");
+                imageUrl = imageUrl.replace(/^\/+/, "");
                 if (!/^https?:\/\//i.test(imageUrl)) {
-                    imageUrl = imageUrl.replace(/^\/+/, "");
-                    // Direct folder structure handle karne ke liye
-                    if (!imageUrl.startsWith("articles/")) {
-                        imageUrl = `articles/${slug}/${imageUrl}`;
-                    }
-                    imageUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${imageUrl}`;
+                    imageUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/articles/${slug}/${imageUrl}`;
                 }
                 image.src = imageUrl;
                 image.onerror = function () { this.style.display = "none"; };
