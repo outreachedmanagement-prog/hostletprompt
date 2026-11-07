@@ -32,10 +32,24 @@
   <url>
     <loc>https://hostletprompt.online/write-for-us</loc>
   </url>
-
-  <url><loc>https://hostletprompt.online/articles/</loc></url>
-  <url><loc>https://hostletprompt.online/articles/prompt-engineering-a-practical-guide-with-examples/</loc></url>
-  <url><loc>https://hostletprompt.online/articles/funny-ai-prompts-a-free-guide-to-hilarious-results/</loc></url>
-  <url><loc>https://hostletprompt.online/articles/chatgpt-prompt-library-how-to-build-and-organize-one/</loc></url>
-  <url><loc>https://hostletprompt.online/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/</loc></url>
+  <url>
+    <loc>https://hostletprompt.online/articles/</loc>
+    <lastmod>2026-11-02</lastmod>
+  </url>
+  <url>
+    <loc>https://hostletprompt.online/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/</loc>
+    <lastmod>2026-11-02</lastmod>
+  </url>
+  <url>
+    <loc>https://hostletprompt.online/articles/chatgpt-prompt-library-how-to-build-and-organize-one/</loc>
+    <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://hostletprompt.online/articles/funny-ai-prompts-a-free-guide-to-hilarious-results/</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://hostletprompt.online/articles/prompt-engineering-a-practical-guide-with-examples/</loc>
+    <lastmod>2026-10-24</lastmod>
+  </url>
 </urlset>

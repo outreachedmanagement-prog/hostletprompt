@@ -6,114 +6,117 @@
 
 <title>Resume Prompts: A Practical Guide to Writing Each Section of a Resume on Gemini | Hostlet Prompt</title>
 
-<meta name="description" content="Good resume prompts tell the AI who you are, what job you want, and what you actually did, then ask it to work on one section at a time. Gemini is a strong c...">
-
+<meta name="description" content="Good resume prompts tell the AI who you are, what job you want, and what you actually did, then ask it to work on one section at a time. Gemini is a strong...">
 <meta name="robots" content="index,follow">
-
 <link rel="canonical" href="https://hostletprompt.online/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/">
 
 <meta property="og:type" content="article">
+<meta property="og:site_name" content="Hostlet Prompt">
 <meta property="og:title" content="Resume Prompts: A Practical Guide to Writing Each Section of a Resume on Gemini">
-<meta property="og:description" content="Good resume prompts tell the AI who you are, what job you want, and what you actually did, then ask it to work on one section at a time. Gemini is a strong c...">
+<meta property="og:description" content="Good resume prompts tell the AI who you are, what job you want, and what you actually did, then ask it to work on one section at a time. Gemini is a strong...">
 <meta property="og:url" content="https://hostletprompt.online/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/">
+<meta property="og:image" content="https://hostletprompt.online/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/untitled-design-6-.jpg">
+<meta property="article:published_time" content="2026-11-02T18:46:00.000Z">
 
-<meta property="og:image" content="untitled-design-6-.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Resume Prompts: A Practical Guide to Writing Each Section of a Resume on Gemini">
+<meta name="twitter:description" content="Good resume prompts tell the AI who you are, what job you want, and what you actually did, then ask it to work on one section at a time. Gemini is a strong...">
+<meta name="twitter:image" content="https://hostletprompt.online/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/untitled-design-6-.jpg">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Resume Prompts: A Practical Guide to Writing Each Section of a Resume on Gemini","description":"Good resume prompts tell the AI who you are, what job you want, and what you actually did, then ask it to work on one section at a time. Gemini is a strong...","mainEntityOfPage":"https://hostletprompt.online/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/","author":{"@type":"Organization","name":"Hostlet Prompt","url":"https://hostletprompt.online"},"publisher":{"@type":"Organization","name":"Hostlet Prompt","url":"https://hostletprompt.online"},"image":["https://hostletprompt.online/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/untitled-design-6-.jpg"],"datePublished":"2026-11-02T18:46:00.000Z"}</script>
 
 <style>
-
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
-    margin: 0;
-    background: linear-gradient(
-        to bottom,
-        #100950,
-        #04125D,
-        #030725,
-        #000
-    );
-    color: #fff;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(to bottom, #100950, #04125D, #030725, #000);
+  color: #fff;
+  font-family: Arial, sans-serif;
 }
 
-.wrap {
-    max-width: 900px;
-    margin: auto;
-    padding: 50px 20px;
+.wrap { max-width: 900px; margin: auto; padding: 50px 20px; }
+
+.nav { margin-bottom: 25px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+.nav a {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #38bdf8;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
 }
+
+.nav a:hover { background: #38bdf8; color: #000; }
 
 .box {
-    background: rgba(4,18,93,.85);
-    border: 1px solid rgba(56,189,248,.5);
-    border-radius: 18px;
-    padding: 35px;
-    box-shadow: 0 0 30px rgba(56,189,248,.25);
+  background: rgba(4,18,93,.85);
+  border: 1px solid rgba(56,189,248,.5);
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 0 30px rgba(56,189,248,.25);
 }
 
 h1 {
-    font-size: 40px;
-    line-height: 1.25;
-    margin: 0 0 25px;
-    text-shadow: 0 0 18px rgba(56,189,248,.7);
+  font-size: 40px;
+  line-height: 1.25;
+  margin: 0 0 15px;
+  text-shadow: 0 0 18px rgba(56,189,248,.7);
 }
+
+.meta { color: #9ca3af; margin: 0 0 25px; font-size: 15px; }
 
 .article-image {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin: 0 0 30px;
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0 0 30px;
 }
 
-.content {
-    color: #d1d5db;
-    font-size: 17px;
-    line-height: 1.8;
+.content { color: #d1d5db; font-size: 17px; line-height: 1.8; }
+.content h2, .content h3 { color: #38bdf8; }
+.content a { color: #38bdf8; }
+.content img { max-width: 100%; height: auto; border-radius: 10px; }
+.content pre { overflow-x: auto; background: rgba(0,0,0,.35); padding: 14px; border-radius: 10px; }
+.content table { border-collapse: collapse; max-width: 100%; display: block; overflow-x: auto; }
+.content th, .content td { border: 1px solid rgba(56,189,248,.4); padding: 8px 12px; }
+
+.related {
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(56,189,248,.35);
 }
 
-.content h2,
-.content h3 {
-    color: #38bdf8;
-}
+.related h2 { color: #38bdf8; margin: 0 0 12px; }
+.related ul { margin: 0; padding-left: 20px; line-height: 2; }
+.related a { color: #fff; }
+.related a:hover { color: #38bdf8; }
 
-.content a {
-    color: #38bdf8;
+@media (max-width: 600px) {
+  h1 { font-size: 30px; }
+  .box { padding: 22px; }
 }
-
-.back {
-    display: inline-block;
-    margin-bottom: 25px;
-    padding: 10px 18px;
-    border: 1px solid #38bdf8;
-    border-radius: 8px;
-    color: #fff;
-    text-decoration: none;
-}
-
-.back:hover {
-    background: #38bdf8;
-    color: #000;
-}
-
 </style>
-
 </head>
 
 <body>
 
 <div class="wrap">
 
-<a class="back" href="/articles/">
-    ← Back to Articles
-</a>
+<nav class="nav">
+  <a href="/">Home</a>
+  <a href="/articles/">← All Articles</a>
+</nav>
 
 <div class="box">
 
 <h1>Resume Prompts: A Practical Guide to Writing Each Section of a Resume on Gemini</h1>
 
-<img class="article-image" src="untitled-design-6-.jpg" alt="Resume Prompts: A Practical Guide to Writing Each Section of a Resume on Gemini">
+<p class="meta"><time datetime="2026-11-02">November 2, 2026</time></p>
+
+<img class="article-image" src="/articles/resume-prompts-a-practical-guide-to-writing-each-section-of-a-resume-on-gemini/untitled-design-6-.jpg" alt="Resume Prompts: A Practical Guide to Writing Each Section of a Resume on Gemini">
 
 <div class="content">
 <p>Good resume prompts tell the AI who you are, what job you want, and what you actually did, then ask it to work on one section at a time. Gemini is a strong choice because you can paste a full job description and your draft together and get focused edits. Always review the result and keep only what’s true.</p>
@@ -265,6 +268,15 @@ h1 {
 <p>Strong resume prompts give the AI real facts, a clear target job, and one task at a time. Use Gemini to draft, tailor, and review, then edit until it sounds like you. Your next step: pick one job post, run the keyword-matching prompt, and update your summary today.</p>
 
 </div>
+
+<section class="related">
+<h2>Related Articles</h2>
+<ul>
+<li><a href="/articles/chatgpt-prompt-library-how-to-build-and-organize-one/">CHATGPT Prompt Library: How to Build and Organize One</a></li>
+<li><a href="/articles/funny-ai-prompts-a-free-guide-to-hilarious-results/">Funny AI Prompts: A Free Guide to Hilarious Results</a></li>
+<li><a href="/articles/prompt-engineering-a-practical-guide-with-examples/">Prompt Engineering: A Practical Guide With Examples</a></li>
+</ul>
+</section>
 
 </div>
 
