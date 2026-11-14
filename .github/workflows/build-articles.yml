@@ -48,6 +48,7 @@ jobs:
           const ROOT = "articles";
           const HOME_LATEST = 6;
           const RELATED = 3;
+          const FOOTER_VISIBLE = 7;
 
           const esc = v => String(v ?? "")
             .replace(/&/g, "&amp;")
@@ -178,6 +179,41 @@ jobs:
             if (ta !== tb) return tb - ta;
             return a.title.localeCompare(b.title);
           });
+
+          // ---------- 1b. "Best Articles" footer block ----------
+          // First FOOTER_VISIBLE articles are shown, the rest sit inside a
+          // collapsed <details> list. Every article is a real <a href> link.
+          const FSTART = "<!-- HP-ARTICLES-START -->";
+          const FEND = "<!-- HP-ARTICLES-END -->";
+
+          const footerLi = a => `<li><a href="${link(a.slug)}">${esc(a.title)}</a></li>`;
+          const footerTop = articles.slice(0, FOOTER_VISIBLE).map(footerLi).join("\n");
+          const footerRest = articles.slice(FOOTER_VISIBLE);
+          const footerMore = footerRest.length
+            ? `<details class="hp-ba-more"><summary>More articles (${footerRest.length})</summary><ul>${footerRest.map(footerLi).join("")}</ul></details>`
+            : "";
+
+          const FOOTER = articles.length
+            ? `${FSTART}
+          <section class="hp-best-articles">
+          <style>
+          .hp-best-articles{max-width:1100px;margin:40px auto 0;padding:24px 20px;color:#fff;text-align:left;font-family:Arial,sans-serif}
+          .hp-best-articles h3{margin:0 0 12px;font-size:1.2rem}
+          .hp-best-articles ul{list-style:none;margin:0;padding:0}
+          .hp-best-articles li{margin:6px 0}
+          .hp-best-articles a{color:#38bdf8;text-decoration:none}
+          .hp-best-articles a:hover{text-decoration:underline}
+          .hp-best-articles summary{cursor:pointer;margin:12px 0 6px;color:#fff}
+          </style>
+          <h3>Best Articles</h3>
+          <ul>
+          ${footerTop}
+          </ul>
+          ${footerMore}
+          <p><a href="/articles/">All articles &rarr;</a></p>
+          </section>
+          ${FEND}`
+            : "";
 
           // ---------- 2. Related articles ----------
           const relatedFor = a => articles
@@ -357,6 +393,8 @@ jobs:
 
           </div>
 
+          ${FOOTER}
+
           </body>
           </html>
           `;
@@ -458,6 +496,8 @@ jobs:
 
           </div>
 
+          ${FOOTER}
+
           </body>
           </html>
           `;
@@ -502,6 +542,33 @@ jobs:
             console.log("index.html not found. Skipping homepage update.");
           }
 
+          // ---------- 5b. Best Articles footer on root HTML pages ----------
+          // Covers index.html and all prompt pages in the repo root.
+          // Uses markers, so re-running replaces the old block (no duplicates).
+          if (FOOTER) {
+            const injectFooter = html => {
+              const fs1 = html.indexOf(FSTART);
+              const fe1 = html.indexOf(FEND);
+              if (fs1 !== -1 && fe1 > fs1) {
+                return html.slice(0, fs1) + FOOTER + html.slice(fe1 + FEND.length);
+              }
+              let i = html.toLowerCase().lastIndexOf("</footer>");
+              if (i === -1) i = html.toLowerCase().lastIndexOf("</body>");
+              if (i === -1) return null;
+              return html.slice(0, i) + FOOTER + "\n" + html.slice(i);
+            };
+
+            for (const f of fs.readdirSync(".")) {
+              if (!/\.html$/i.test(f) || /^google/i.test(f)) continue;
+              const cur = fs.readFileSync(f, "utf8");
+              const next = injectFooter(cur);
+              if (next && next !== cur) {
+                fs.writeFileSync(f, next, "utf8");
+                console.log(`Footer updated: ${f}`);
+              }
+            }
+          }
+
           // ---------- 6. Sitemap ----------
           // Keeps every non-article URL as it is, and rebuilds all /articles/ URLs
           // from scratch (so deleted articles disappear, new ones are added).
@@ -541,7 +608,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add articles/ sitemap.xml index.html
+          git add articles/ sitemap.xml ./*.html
 
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
