@@ -4,13 +4,6 @@ date: 2026-11-15T20:33:00.000+05:00
 image: untitled-design-4-.jpg
 ---
 
-
-**SEO Title (under 60 characters):** Video Prompts: Tested Prompts for Viral YouTube Ideas and Scripts **Meta Description (under 155 characters):** Copy 19 tested video prompts for ChatGPT and Claude. Get viral YouTube ideas, strong hooks, and human-sounding scripts, with real output examples. **Suggested URL:** /video-prompts-youtube-ideas-scripts **Main Keyword:** video prompts **Related Keywords:** ChatGPT prompts for YouTube, YouTube script prompts, viral video ideas prompt, AI prompt for YouTube scripts, YouTube hook prompts
-
-
-
-
-
 ## **Introduction**
 
 Let me clear one thing first. In this article, "video prompts" means the instructions you type into[ ChatGPT](https://hostletprompt.online/best-prompts-for-chatgpt/) or[ Claude](https://hostletprompt.online/best-prompts-for-claudeai/) to get YouTube video ideas and full scripts. It does not mean prompts for AI video tools that make clips.
