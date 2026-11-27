@@ -6,7 +6,7 @@ image: untitled-design-4-.jpg
 
 ## **Introduction**
 
-Let me clear one thing first. In this article, "video prompts" means the instructions you type into[ ChatGPT](https://hostletprompt.online/best-prompts-for-chatgpt/) or[ Claude](https://hostletprompt.online/best-prompts-for-claudeai/) to get YouTube video ideas and full scripts. It does not mean prompts for AI video tools that make clips.
+Let me clear one thing first. In this article, "video prompts" means the instructions you type into[ ChatGPT](https://hostletprompt.online/best-prompts-for-chatgpt) or[ Claude](https://hostletprompt.online/best-prompts-for-claudeai) to get YouTube video ideas and full scripts. It does not mean prompts for AI video tools that make clips.
 
 Most creators type something like "Write a YouTube script about fitness" and get a flat, boring script. I ran the same topic through a simple prompt and through a structured prompt. The difference was big. The simple prompt gave me a script that sounded like a school essay. The structured prompt gave me a clear hook, short sections, and lines I could actually say out loud.
 
@@ -90,7 +90,7 @@ Sets the voice
 
 "Friendly, simple, like talking to a friend."
 
-If you do not want to fill in these five parts by hand every time, a[ free prompt generator](https://hostletprompt.online/free-prompt-generator/) can turn a simple idea into a structured prompt for you in a few seconds.
+If you do not want to fill in these five parts by hand every time, a[ free prompt generator](https://hostletprompt.online/free-prompt-generator) can turn a simple idea into a structured prompt for you in a few seconds.
 
 ![YouTube prompt writing formula with script planning, video content ideas, and growth analytics.](untitled-design-3-.jpg)
 
@@ -957,9 +957,9 @@ Do not just copy the original lines.
 
 **2. How many words do I need for a 10-minute video?** About 1,400 to 1,500 words. See the word count table above.
 
-**3. Is free ChatGPT enough?** Yes, for most of these prompts. Paid plans may give longer answers and better memory, but a clear prompt matters more than the plan. You can also browse more[ best prompts for ChatGPT](https://hostletprompt.online/best-prompts-for-chatgpt/) to build your own prompt collection.
+**3. Is free ChatGPT enough?** Yes, for most of these prompts. Paid plans may give longer answers and better memory, but a clear prompt matters more than the plan. You can also browse more[ best prompts for ChatGPT](https://hostletprompt.online/best-prompts-for-chatgpt) to build your own prompt collection.
 
-**4. Which is better, ChatGPT or Claude?** Both work. Try the same prompt in each and keep the one that matches your voice better. If you want a starting point for Claude, see these[ best prompts for Claude](https://hostletprompt.online/best-prompts-for-claudeai/).
+**4. Which is better, ChatGPT or Claude?** Both work. Try the same prompt in each and keep the one that matches your voice better. If you want a starting point for Claude, see these[ best prompts for Claude](https://hostletprompt.online/best-prompts-for-claudeai).
 
 **5. Can I use the same prompt for every video?** Yes, as a base. Change the brackets and the Channel DNA details each time.
 
@@ -977,6 +977,6 @@ Do not just copy the original lines.
 
 Good video prompts do three things: they give the AI a clear role, they share real details about your audience and channel, and they ask for a clear format. Use the ideas prompt to find topics, the hook prompts to start strong, and the script prompt to build the video step by step. Then edit with your own voice.
 
-**Your next step:** Pick one video idea today. Paste your Channel DNA, run Prompt 1, then run Prompt 13 on your best idea. Save both outputs and compare them with a generic prompt. You will see the difference in minutes. If you want to build prompts for other tasks too, try our[ free prompt generator](https://hostletprompt.online/free-prompt-generator/).
+**Your next step:** Pick one video idea today. Paste your Channel DNA, run Prompt 1, then run Prompt 13 on your best idea. Save both outputs and compare them with a generic prompt. You will see the difference in minutes. If you want to build prompts for other tasks too, try our[ free prompt generator](https://hostletpromp.online/free-prompt-generator).
 
 If this guide helped, share it with a creator friend who is stuck on scripts.
